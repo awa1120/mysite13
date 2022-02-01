@@ -1,0 +1,991 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.5 (Ubuntu 12.5-0ubuntu0.20.04.1)
+-- Dumped by pg_dump version 12.5 (Ubuntu 12.5-0ubuntu0.20.04.1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: authorities; Type: TABLE; Schema: public; Owner: awa1120
+--
+
+CREATE TABLE public.authorities (
+    id integer NOT NULL,
+    "権限コード" character varying(5) NOT NULL,
+    "権限名称" character varying(50) NOT NULL,
+    "補助情報１" character varying(10) NOT NULL,
+    "補助情報２" character varying(10) NOT NULL,
+    "取消区分" character varying(1) NOT NULL
+);
+
+
+ALTER TABLE public.authorities OWNER TO awa1120;
+
+--
+-- Name: authorities_id_seq; Type: SEQUENCE; Schema: public; Owner: awa1120
+--
+
+CREATE SEQUENCE public.authorities_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.authorities_id_seq OWNER TO awa1120;
+
+--
+-- Name: authorities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: awa1120
+--
+
+ALTER SEQUENCE public.authorities_id_seq OWNED BY public.authorities.id;
+
+
+--
+-- Name: blogs; Type: TABLE; Schema: public; Owner: awa1120
+--
+
+CREATE TABLE public.blogs (
+    id integer NOT NULL,
+    title character varying(60) NOT NULL,
+    content text NOT NULL
+);
+
+
+ALTER TABLE public.blogs OWNER TO awa1120;
+
+--
+-- Name: blogs_id_seq; Type: SEQUENCE; Schema: public; Owner: awa1120
+--
+
+CREATE SEQUENCE public.blogs_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.blogs_id_seq OWNER TO awa1120;
+
+--
+-- Name: blogs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: awa1120
+--
+
+ALTER SEQUENCE public.blogs_id_seq OWNED BY public.blogs.id;
+
+
+--
+-- Name: board; Type: TABLE; Schema: public; Owner: awa1120
+--
+
+CREATE TABLE public.board (
+    id integer NOT NULL,
+    name character varying(30) NOT NULL,
+    content text NOT NULL,
+    path character varying(50)
+);
+
+
+ALTER TABLE public.board OWNER TO awa1120;
+
+--
+-- Name: board_id_seq; Type: SEQUENCE; Schema: public; Owner: awa1120
+--
+
+CREATE SEQUENCE public.board_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.board_id_seq OWNER TO awa1120;
+
+--
+-- Name: board_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: awa1120
+--
+
+ALTER SEQUENCE public.board_id_seq OWNED BY public.board.id;
+
+
+--
+-- Name: buys; Type: TABLE; Schema: public; Owner: awa1120
+--
+
+CREATE TABLE public.buys (
+    id integer NOT NULL,
+    "申請日" character varying(10) NOT NULL,
+    "購入日" character varying(10) NOT NULL,
+    "申請者" character varying(20) NOT NULL,
+    "品名" character varying(50) NOT NULL,
+    "メーカー" character varying(50) NOT NULL,
+    "予算コード" character varying(10) NOT NULL,
+    "税込額" character varying(10) NOT NULL,
+    "税抜額" character varying(10) NOT NULL,
+    "税額" character varying(10) NOT NULL
+);
+
+
+ALTER TABLE public.buys OWNER TO awa1120;
+
+--
+-- Name: buys_id_seq; Type: SEQUENCE; Schema: public; Owner: awa1120
+--
+
+CREATE SEQUENCE public.buys_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.buys_id_seq OWNER TO awa1120;
+
+--
+-- Name: buys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: awa1120
+--
+
+ALTER SEQUENCE public.buys_id_seq OWNED BY public.buys.id;
+
+
+--
+-- Name: ip001; Type: TABLE; Schema: public; Owner: awa1120
+--
+
+CREATE TABLE public.ip001 (
+    id integer NOT NULL,
+    "申請日" date NOT NULL,
+    "購入日" date NOT NULL,
+    "申請者" character varying(20) NOT NULL,
+    "品名" character varying(50) NOT NULL,
+    "メーカー" character varying(50) NOT NULL,
+    "予算コード" character varying(5) NOT NULL,
+    "税込額" integer NOT NULL,
+    "税抜額" integer NOT NULL,
+    "税額" integer NOT NULL
+);
+
+
+ALTER TABLE public.ip001 OWNER TO awa1120;
+
+--
+-- Name: ip001_id_seq; Type: SEQUENCE; Schema: public; Owner: awa1120
+--
+
+CREATE SEQUENCE public.ip001_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.ip001_id_seq OWNER TO awa1120;
+
+--
+-- Name: ip001_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: awa1120
+--
+
+ALTER SEQUENCE public.ip001_id_seq OWNED BY public.ip001.id;
+
+
+--
+-- Name: kounyu; Type: TABLE; Schema: public; Owner: awa1120
+--
+
+CREATE TABLE public.kounyu (
+    id integer NOT NULL,
+    "申請日" character varying(10) NOT NULL,
+    "購入日" character varying(10) NOT NULL,
+    "申請者id" character varying(8) NOT NULL,
+    "品名" character varying(50) NOT NULL,
+    "メーカー" character varying(30) NOT NULL,
+    "予算コード" character varying(5) NOT NULL,
+    "税込額" character varying(10) NOT NULL,
+    "税抜額" character varying(10) NOT NULL,
+    "税額" character varying(10) NOT NULL,
+    "備考" character varying(50) NOT NULL,
+    "申請状況" character varying(50) NOT NULL,
+    "添付ファイル" character varying(50) NOT NULL,
+    "取消区分" character varying(1) NOT NULL
+);
+
+
+ALTER TABLE public.kounyu OWNER TO awa1120;
+
+--
+-- Name: kounyu_id_seq; Type: SEQUENCE; Schema: public; Owner: awa1120
+--
+
+CREATE SEQUENCE public.kounyu_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.kounyu_id_seq OWNER TO awa1120;
+
+--
+-- Name: kounyu_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: awa1120
+--
+
+ALTER SEQUENCE public.kounyu_id_seq OWNED BY public.kounyu.id;
+
+
+--
+-- Name: posts; Type: TABLE; Schema: public; Owner: awa1120
+--
+
+CREATE TABLE public.posts (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    content character varying(60) NOT NULL
+);
+
+
+ALTER TABLE public.posts OWNER TO awa1120;
+
+--
+-- Name: posts_id_seq; Type: SEQUENCE; Schema: public; Owner: awa1120
+--
+
+CREATE SEQUENCE public.posts_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.posts_id_seq OWNER TO awa1120;
+
+--
+-- Name: posts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: awa1120
+--
+
+ALTER SEQUENCE public.posts_id_seq OWNED BY public.posts.id;
+
+
+--
+-- Name: shinsei; Type: TABLE; Schema: public; Owner: awa1120
+--
+
+CREATE TABLE public.shinsei (
+    id integer NOT NULL,
+    "申請者id" character varying(8) NOT NULL,
+    "申請日" character varying(10) NOT NULL,
+    "費用発生日" character varying(10) NOT NULL,
+    "費用区分" character varying(2) NOT NULL,
+    "件名" character varying(50) NOT NULL,
+    "詳細" character varying(200) NOT NULL,
+    "予算コード" character varying(5) NOT NULL,
+    "税込額" integer NOT NULL,
+    "税抜額" integer NOT NULL,
+    "税額" integer NOT NULL,
+    "税率" integer NOT NULL,
+    "備考" character varying(200) NOT NULL,
+    "申請状況" character varying(50) NOT NULL,
+    "取消区分" character varying(1) NOT NULL,
+    "添付ファイル" text
+);
+
+
+ALTER TABLE public.shinsei OWNER TO awa1120;
+
+--
+-- Name: shinsei_id_seq; Type: SEQUENCE; Schema: public; Owner: awa1120
+--
+
+CREATE SEQUENCE public.shinsei_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.shinsei_id_seq OWNER TO awa1120;
+
+--
+-- Name: shinsei_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: awa1120
+--
+
+ALTER SEQUENCE public.shinsei_id_seq OWNED BY public.shinsei.id;
+
+
+--
+-- Name: syonin; Type: TABLE; Schema: public; Owner: awa1120
+--
+
+CREATE TABLE public.syonin (
+    id integer NOT NULL,
+    "申請番号" integer NOT NULL,
+    "承認日" character varying(10) NOT NULL,
+    "承認者id" character varying(10) NOT NULL,
+    "承認コメント" character varying(10) NOT NULL,
+    "取消区分" character varying(1) NOT NULL
+);
+
+
+ALTER TABLE public.syonin OWNER TO awa1120;
+
+--
+-- Name: syonin_id_seq; Type: SEQUENCE; Schema: public; Owner: awa1120
+--
+
+CREATE SEQUENCE public.syonin_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.syonin_id_seq OWNER TO awa1120;
+
+--
+-- Name: syonin_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: awa1120
+--
+
+ALTER SEQUENCE public.syonin_id_seq OWNED BY public.syonin.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: awa1120
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    name character varying(25) NOT NULL,
+    email character varying(35) NOT NULL,
+    password character varying(60) NOT NULL,
+    employee_id character varying(8),
+    authority character varying(5)
+);
+
+
+ALTER TABLE public.users OWNER TO awa1120;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: awa1120
+--
+
+CREATE SEQUENCE public.users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO awa1120;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: awa1120
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: yosan; Type: TABLE; Schema: public; Owner: awa1120
+--
+
+CREATE TABLE public.yosan (
+    id integer NOT NULL,
+    "予算コード" character varying(5) NOT NULL,
+    "差引日" character varying(10) NOT NULL,
+    "差引額" integer NOT NULL,
+    "申請者id" character varying(8) NOT NULL,
+    "申請id" integer NOT NULL,
+    "費用区分" character varying(1) NOT NULL,
+    "処理区分" character varying(1) NOT NULL,
+    "確定区分" character varying(1) NOT NULL,
+    "取消区分" character varying(1) NOT NULL
+);
+
+
+ALTER TABLE public.yosan OWNER TO awa1120;
+
+--
+-- Name: yosan_id_seq; Type: SEQUENCE; Schema: public; Owner: awa1120
+--
+
+CREATE SEQUENCE public.yosan_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.yosan_id_seq OWNER TO awa1120;
+
+--
+-- Name: yosan_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: awa1120
+--
+
+ALTER SEQUENCE public.yosan_id_seq OWNED BY public.yosan.id;
+
+
+--
+-- Name: yosan_masta; Type: TABLE; Schema: public; Owner: awa1120
+--
+
+CREATE TABLE public.yosan_masta (
+    id integer NOT NULL,
+    "予算コード" character varying(5) NOT NULL,
+    "予算名称" character varying(50) NOT NULL,
+    "取消区分" character varying(1) NOT NULL
+);
+
+
+ALTER TABLE public.yosan_masta OWNER TO awa1120;
+
+--
+-- Name: yosan_masta_id_seq; Type: SEQUENCE; Schema: public; Owner: awa1120
+--
+
+CREATE SEQUENCE public.yosan_masta_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.yosan_masta_id_seq OWNER TO awa1120;
+
+--
+-- Name: yosan_masta_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: awa1120
+--
+
+ALTER SEQUENCE public.yosan_masta_id_seq OWNED BY public.yosan_masta.id;
+
+
+--
+-- Name: authorities id; Type: DEFAULT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.authorities ALTER COLUMN id SET DEFAULT nextval('public.authorities_id_seq'::regclass);
+
+
+--
+-- Name: blogs id; Type: DEFAULT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.blogs ALTER COLUMN id SET DEFAULT nextval('public.blogs_id_seq'::regclass);
+
+
+--
+-- Name: board id; Type: DEFAULT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.board ALTER COLUMN id SET DEFAULT nextval('public.board_id_seq'::regclass);
+
+
+--
+-- Name: buys id; Type: DEFAULT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.buys ALTER COLUMN id SET DEFAULT nextval('public.buys_id_seq'::regclass);
+
+
+--
+-- Name: ip001 id; Type: DEFAULT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.ip001 ALTER COLUMN id SET DEFAULT nextval('public.ip001_id_seq'::regclass);
+
+
+--
+-- Name: kounyu id; Type: DEFAULT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.kounyu ALTER COLUMN id SET DEFAULT nextval('public.kounyu_id_seq'::regclass);
+
+
+--
+-- Name: posts id; Type: DEFAULT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.posts ALTER COLUMN id SET DEFAULT nextval('public.posts_id_seq'::regclass);
+
+
+--
+-- Name: shinsei id; Type: DEFAULT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.shinsei ALTER COLUMN id SET DEFAULT nextval('public.shinsei_id_seq'::regclass);
+
+
+--
+-- Name: syonin id; Type: DEFAULT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.syonin ALTER COLUMN id SET DEFAULT nextval('public.syonin_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Name: yosan id; Type: DEFAULT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.yosan ALTER COLUMN id SET DEFAULT nextval('public.yosan_id_seq'::regclass);
+
+
+--
+-- Name: yosan_masta id; Type: DEFAULT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.yosan_masta ALTER COLUMN id SET DEFAULT nextval('public.yosan_masta_id_seq'::regclass);
+
+
+--
+-- Data for Name: authorities; Type: TABLE DATA; Schema: public; Owner: awa1120
+--
+
+COPY public.authorities (id, "権限コード", "権限名称", "補助情報１", "補助情報２", "取消区分") FROM stdin;
+1	0001	一般利用者			
+\.
+
+
+--
+-- Data for Name: blogs; Type: TABLE DATA; Schema: public; Owner: awa1120
+--
+
+COPY public.blogs (id, title, content) FROM stdin;
+\.
+
+
+--
+-- Data for Name: board; Type: TABLE DATA; Schema: public; Owner: awa1120
+--
+
+COPY public.board (id, name, content, path) FROM stdin;
+\.
+
+
+--
+-- Data for Name: buys; Type: TABLE DATA; Schema: public; Owner: awa1120
+--
+
+COPY public.buys (id, "申請日", "購入日", "申請者", "品名", "メーカー", "予算コード", "税込額", "税抜額", "税額") FROM stdin;
+3	20210223	20210223	あわ	すまほ	iphone	アップル	110	100	10
+4	20210101	20210101	ユーザ	パソコン	TOSHIBA	A-110000	100000	100000	100000
+5	20210101	20210101	ああああ	いいい	ううう	9899929	300000	300000	300000
+6	20210227	20210226	awa	てーぶる	ニトリ	A100001	11000	10000	1000
+1	20210224	20210223	安和	パソコン	HP	A-110000	110000	100000	10000
+2	20210224	20210223	安和	パソコン	HP	A-110000	110000	100000	10000
+7	20210227	20210224	ユーザ	イス	ニトリ	A100001	11000	1000	500
+8									
+9									
+10	20210301	20210301	うちなーんちゅ	ごーやー	読谷	Y10001	33000	30000	3000
+11	20210302	20210302	おきなわ	たまねぎ	南城市	A100001	5500	5000	500
+\.
+
+
+--
+-- Data for Name: ip001; Type: TABLE DATA; Schema: public; Owner: awa1120
+--
+
+COPY public.ip001 (id, "申請日", "購入日", "申請者", "品名", "メーカー", "予算コード", "税込額", "税抜額", "税額") FROM stdin;
+\.
+
+
+--
+-- Data for Name: kounyu; Type: TABLE DATA; Schema: public; Owner: awa1120
+--
+
+COPY public.kounyu (id, "申請日", "購入日", "申請者id", "品名", "メーカー", "予算コード", "税込額", "税抜額", "税額", "備考", "申請状況", "添付ファイル", "取消区分") FROM stdin;
+2	20210303	20210303	9999999	パソコン	アップル	A1001	11000	10000	1000	ダミー	1	/aaa/bbb	0
+5	20210227	20210223	9999999	ディスプレイ	iiyma	A1001	11000	10000	1000	ダミー	9	/aaa/bbb	0
+4	20210101	20210101	9999999	ゴーヤー	読谷	A1001	10000	10000	1000	ダミー	9	/aaa/bbb	0
+3	20210301	20210301	9999999	すまほ	アップル	A1001	5500	5000	500	ダミー	9	/aaa/bbb	0
+\.
+
+
+--
+-- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: awa1120
+--
+
+COPY public.posts (id, user_id, content) FROM stdin;
+\.
+
+
+--
+-- Data for Name: shinsei; Type: TABLE DATA; Schema: public; Owner: awa1120
+--
+
+COPY public.shinsei (id, "申請者id", "申請日", "費用発生日", "費用区分", "件名", "詳細", "予算コード", "税込額", "税抜額", "税額", "税率", "備考", "申請状況", "取消区分", "添付ファイル") FROM stdin;
+1	88888888	20210307	20210307	1	てーぶる	てーぶる購入	A1001	11000	10000	1000	10	申請します	9	0	\N
+34	88888888	20210314	20210314	1	でぃすぷれい	でぃすぷれい	A1001	55000	50000	5000	10	でぃすぷれい	1	0	./tmp/20210314test.txt
+3	88888888	20210101	20210101	6	のみかい	のみかい	A1001	11000	10000	1000	10	備考	9	0	./tmp/test.jpg
+4	88888888	20210201	20210201	6	飲み会	飲み会	A1001	11000	10000	10000	10	申請します	1	0	
+5	88888888	20210308	20210308	6	のみにいきます	のみにいきます	A1001	11000	10000	1000	10	申請します	9	0	
+2	88888888	20210308	20210308	4	講演料	講演料	A1001	11000	10000	1000	10	申請します	9	0	\N
+33	88888888	20210303	20210303	4	プログラミングの参考書を購入	プログラミングの参考書を購入	A1001	11000	10000	1000	10	プログラミングの参考書を購入	1	0	
+10	88888888	20210303	20210303	2	講演料	講演料	A1001	11000	10000	1000	10	備考	1	0	
+11	88888888	20210303	20210303	6	のみにいきます２	のみにいきます２	A1001	44000	40000	4000	10	のみにいきまーーす	1	0	
+12	88888888	20210308	20210308	1	こっぷ	こっぷ	A1001	11000	10000	1000	10	備考	1	0	
+13	88888888	20210224	20210224	2	謝礼金	謝礼金	A1001	11000	10000	1000	10	謝礼金	1	0	
+14	88888888	20210227	20210227	6	のみにいきます	20210227	A1001	11000	10000	1000	10	のみにいきまーーす	1	0	
+15	88888888	20210308	20210308	5	ほん	hon	A1001	11000	10000	1000	10	備考	1	0	
+16	88888888	20210227	20210227	3	のみかい	のみかい	A1001	11000	10000	1000	10		1	0	
+17	88888888	20210227	20210303	3	てーぶる	飲み会	A1001	11000	10000	1000	10	テーブルこうにゅう	1	0	
+18	88888888	20210223	20210223	4	ほん	hon	A1001	11000	10000	1000	10	テーブルこうにゅう	1	0	
+21	88888888	20210303	20210303	2	講演料	講演料	A1001	33000	29999	3000	10	講演料	1	0	
+19	88888888	20210101	20210101	5	いーらーにんぐ	いーらーにんぐ	A1001	11000	10000	1000	10	いーらーにんぐ	1	0	
+20	88888888	20210303	20210303	6	のみにいきます	のみにいきます	A1001	5500	5000	500	10	のみにいきます	1	0	
+22	88888888	20210303	20210303	4	ほん	hon	A1001	11000	10000	1000	10	備考	1	0	
+23	88888888	20210223	20210223	3	のみにいきます	のみにいきます	A1001	11000	10000	1000	10	いーらーにんぐ	1	0	
+24	88888888	20210303	20210303	1	こっぷ	のみにいきます	A1001	11000	10000	1000	10	申請します	1	0	
+25	88888888	20210223	20210308	4	ほん	hon	A1001	11000	10000	1000	10	備考	1	0	
+6	88888888	20210308	20210308	3	出張代	沖縄⇒東京	A1001	11000	10000	1000	10	申請します	9	0	
+26	88888888	20210310	20210310	1	ぱそこん	ぱそこん	A1001	11000	10000	1000	10	ぱそこん	1	0	
+7	88888888	20210308	20210308	4	ほん	hon	A1001	11000	10000	1000	10	申請します	9	0	
+8	88888888	20210223	20210223	6	のみにいきます	飲み会	A1001	5500	5000	500	10	テーブルこうにゅう	9	0	
+27	88888888	20210311	20210311	6	のみかい	のみかい	A1001	11000	10000	1000	10	のみにいきまーーす	1	0	
+28	88888888	20210308	20210308	6	のみかい	のみかい	A1001	110000	110000	10000	10	のみにいきまーーす	1	0	
+9	88888888	20210101	20210101	3	出張	20210101	A1001	11000	10000	1000	10	備考	9	0	
+29	88888888	20210801	20210801	2	講演会	講演会	A1001	50000	45454	4545	10	講演会	1	0	
+30	88888888	20210701	20210701	5	講座受講	講座受講	A1001	5500	5000	500	10	講座受講	1	0	
+31	88888888	20201201	20201201	5	教育受講	教育受講	A1001	11000	10000	1000	10	教育受講	1	0	
+32	88888888	20200501	20200501	5	オンラインスクール	オンラインスクール	A1001	11000	10000	1000	10	オンラインスクール	1	0	
+\.
+
+
+--
+-- Data for Name: syonin; Type: TABLE DATA; Schema: public; Owner: awa1120
+--
+
+COPY public.syonin (id, "申請番号", "承認日", "承認者id", "承認コメント", "取消区分") FROM stdin;
+1	25				
+2	26				
+3	7	67	77777777	OK	
+4	8	20210310	77777777	OK	
+5	27				
+6	28				
+7	29				
+8	30				
+9	31				
+10	32				
+11	33				
+12	34				
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: awa1120
+--
+
+COPY public.users (id, name, email, password, employee_id, authority) FROM stdin;
+2	higa	higa@mail.com	higa	\N	\N
+3	user1	user1@mail.com	userpass	\N	\N
+6	宮城	miyagi@mail.com	oshiro	\N	\N
+7	山梨	yamashiro@mail.com	yamashiro	\N	\N
+5	大城	oshiro@mail.com	oshiropass	\N	\N
+1	kinjo	kinjo@mail.com	kinjo	77777777	0010
+4	Ryoma Awa	awa50141120@gmail.com	awa	88888888	0001
+\.
+
+
+--
+-- Data for Name: yosan; Type: TABLE DATA; Schema: public; Owner: awa1120
+--
+
+COPY public.yosan (id, "予算コード", "差引日", "差引額", "申請者id", "申請id", "費用区分", "処理区分", "確定区分", "取消区分") FROM stdin;
+1	A1001	20210303	-11000	88888888	1	3	1	0	0
+2	A1001	20210223	-11000	88888888	1	4	1	0	0
+3	A1001	20210223	-11000	88888888	1	3	1	0	0
+4	A1001	20210303	-11000	88888888	2	1	1	0	0
+5	A1001	20210308	-11000	88888888	2	4	1	0	0
+6	A1001	20210310	-11000	88888888	2	1	1	0	0
+8	A1001	20210311	-11000	88888888	2	6	1	0	0
+9	A1001	20210308	-110000	88888888	2	6	1	0	0
+7	A1001	20200401	1000000	0	0	0	0	1	0
+10	A1001	20200801	-50000	88888888	2	2	1	0	0
+11	A1001	20200701	-5500	88888888	3	5	1	0	0
+12	A1001	20201201	-11000	88888888	3	5	1	0	0
+13	A1001	20200501	-11000	88888888	3	5	1	0	0
+14	A1001	20200401	250000	0	0	0	0	1	0
+15	A1001	20200401	50000	0	0	0	0	1	0
+16	A1001	20200401	50000	0	0	0	0	1	0
+17	A1001	20200401	50000	0	0	0	0	1	0
+18	A1001	20210303	-11000	88888888	3	4	1	0	0
+19	A1001	20210314	-55000	88888888	3	1	1	0	0
+\.
+
+
+--
+-- Data for Name: yosan_masta; Type: TABLE DATA; Schema: public; Owner: awa1120
+--
+
+COPY public.yosan_masta (id, "予算コード", "予算名称", "取消区分") FROM stdin;
+1	A1001	なんでも使っていいですよ予算	
+\.
+
+
+--
+-- Name: authorities_id_seq; Type: SEQUENCE SET; Schema: public; Owner: awa1120
+--
+
+SELECT pg_catalog.setval('public.authorities_id_seq', 1, true);
+
+
+--
+-- Name: blogs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: awa1120
+--
+
+SELECT pg_catalog.setval('public.blogs_id_seq', 1, false);
+
+
+--
+-- Name: board_id_seq; Type: SEQUENCE SET; Schema: public; Owner: awa1120
+--
+
+SELECT pg_catalog.setval('public.board_id_seq', 1, false);
+
+
+--
+-- Name: buys_id_seq; Type: SEQUENCE SET; Schema: public; Owner: awa1120
+--
+
+SELECT pg_catalog.setval('public.buys_id_seq', 11, true);
+
+
+--
+-- Name: ip001_id_seq; Type: SEQUENCE SET; Schema: public; Owner: awa1120
+--
+
+SELECT pg_catalog.setval('public.ip001_id_seq', 1, false);
+
+
+--
+-- Name: kounyu_id_seq; Type: SEQUENCE SET; Schema: public; Owner: awa1120
+--
+
+SELECT pg_catalog.setval('public.kounyu_id_seq', 6, true);
+
+
+--
+-- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: awa1120
+--
+
+SELECT pg_catalog.setval('public.posts_id_seq', 1, false);
+
+
+--
+-- Name: shinsei_id_seq; Type: SEQUENCE SET; Schema: public; Owner: awa1120
+--
+
+SELECT pg_catalog.setval('public.shinsei_id_seq', 34, true);
+
+
+--
+-- Name: syonin_id_seq; Type: SEQUENCE SET; Schema: public; Owner: awa1120
+--
+
+SELECT pg_catalog.setval('public.syonin_id_seq', 12, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: awa1120
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 8, true);
+
+
+--
+-- Name: yosan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: awa1120
+--
+
+SELECT pg_catalog.setval('public.yosan_id_seq', 19, true);
+
+
+--
+-- Name: yosan_masta_id_seq; Type: SEQUENCE SET; Schema: public; Owner: awa1120
+--
+
+SELECT pg_catalog.setval('public.yosan_masta_id_seq', 1, true);
+
+
+--
+-- Name: authorities authorities_pkey; Type: CONSTRAINT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.authorities
+    ADD CONSTRAINT authorities_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: authorities authorities_権限コード_key; Type: CONSTRAINT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.authorities
+    ADD CONSTRAINT "authorities_権限コード_key" UNIQUE ("権限コード");
+
+
+--
+-- Name: blogs blogs_pkey; Type: CONSTRAINT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.blogs
+    ADD CONSTRAINT blogs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: board board_pkey; Type: CONSTRAINT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.board
+    ADD CONSTRAINT board_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: buys buys_pkey; Type: CONSTRAINT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.buys
+    ADD CONSTRAINT buys_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ip001 ip001_pkey; Type: CONSTRAINT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.ip001
+    ADD CONSTRAINT ip001_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: kounyu kounyu_pkey; Type: CONSTRAINT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.kounyu
+    ADD CONSTRAINT kounyu_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: posts posts_pkey; Type: CONSTRAINT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.posts
+    ADD CONSTRAINT posts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: shinsei shinsei_pkey; Type: CONSTRAINT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.shinsei
+    ADD CONSTRAINT shinsei_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: syonin syonin_pkey; Type: CONSTRAINT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.syonin
+    ADD CONSTRAINT syonin_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: syonin syonin_申請番号_key; Type: CONSTRAINT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.syonin
+    ADD CONSTRAINT "syonin_申請番号_key" UNIQUE ("申請番号");
+
+
+--
+-- Name: users users_email_key; Type: CONSTRAINT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_email_key UNIQUE (email);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: yosan_masta yosan_masta_pkey; Type: CONSTRAINT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.yosan_masta
+    ADD CONSTRAINT yosan_masta_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: yosan_masta yosan_masta_予算コード_key; Type: CONSTRAINT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.yosan_masta
+    ADD CONSTRAINT "yosan_masta_予算コード_key" UNIQUE ("予算コード");
+
+
+--
+-- Name: yosan yosan_pkey; Type: CONSTRAINT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.yosan
+    ADD CONSTRAINT yosan_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: posts posts_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: awa1120
+--
+
+ALTER TABLE ONLY public.posts
+    ADD CONSTRAINT posts_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

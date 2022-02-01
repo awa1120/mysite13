@@ -1,0 +1,73 @@
+class SearchConditions
+    def initialize
+    end
+
+    def Conditions(shinseibi:, konyubi:, shinseisya:, hinmei:, maker:, hinban:)
+        #テーブルへアクセスするSQLを定義する。
+        sql_buys = "SELECT * FROM buys"
+        sort = "order by id"
+
+        #検索条件が空の場合、全レコードを対象に検索する。
+        if shinseibi.empty?
+            if konyubi.empty?
+                if shinseisya.empty?
+                    if hinmei.empty?
+                        if maker.empty?
+                            if hinban.empty?
+                                return "#{sql_buys} #{sort}"
+                            end
+                        end
+                    end
+                end
+            end
+        end
+
+        #検索条件に1つ以上データがある場合、条件付きの検索を行う。
+        where = "where "
+        #申請日の検索条件を設定する。
+        if shinseibi.empty?
+            shinseibi_where = nil
+        else
+            shinseibi_where = "申請日='#{shinseibi}'"
+        end
+
+        #購入日の検索条件を設定する。
+        if konyubi.empty?
+            konyubi_where = nil
+        else
+            konyubi_where = "AND 購入日='#{konyubi}'"
+        end
+
+        #申請者の検索条件を設定する。
+        if shinseisya.empty?
+            shinseisya_where = nil
+        else
+            shinseisya_where = "AND 申請者='#{shinseisya}'"
+        end
+
+        #品名の検索条件を設定する。
+        if hinmei.empty?
+            hinmei = nil
+        else
+            hinmei = "AND 品名='#{hinmei}'"
+        end
+
+        #メーカーの検索条件を設定する。
+        if maker.empty?
+            maker = nil
+        else
+            maker = "AND 品名='#{maker}'"
+        end
+
+        #メーカーの検索条件を設定する。
+        if hinban.empty?
+            hinban = nil
+        else
+            hinban = "AND 品名='#{hinban}'"
+        end
+
+        sql = "#{sql_buys} #{where} #{shinseibi_where} #{konyubi_where} #{sort}"
+        return sql
+    end
+
+end

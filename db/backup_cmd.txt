@@ -1,0 +1,1 @@
+pg_dump myapp > 20210314_db_backaup 

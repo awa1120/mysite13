@@ -1,0 +1,174 @@
+.login_h5{
+   background: rgba(255, 255, 255, 0.9) !important; 
+}
+
+.login_h6{
+background-color: transparent !important;
+background: rgb(48, 47, 47) !important; 
+padding: 0;
+}
+.text-black{
+   color: rgb(61, 61, 61) ;
+}
+
+.index1{
+    padding: 1rem 1rem !important;
+    border-left: 4px solid #000 !important;
+    border-color: rgb(15, 83, 172) !important;
+    height: 5px !important;
+    font-size: 14px !important;
+    vertical-align: middle !important;
+    display: flex !important; /*上下中央になるセット*/
+    justify-content: left !important;/*これで左寄せになるようだ。*/
+    align-items: center !important; /*これで上下中央になるようだ。*/
+}
+
+.kensaku{
+}
+
+.origin_btn{
+
+}
+
+.sidebar{
+   /* opacity: 0.6 !important; */
+   background: rgba(39, 39, 39, 0.5) !important;
+}
+
+.none_skeleton{
+    opacity: none !important;
+    color: white;
+}
+
+.skeleton{
+   background: rgba(29, 28, 28, 0.8) !important;
+}
+
+.cl-original-bk{
+ background-color: rgba(0, 0, 0,) !important;
+ background-image: url(../img/wallpaperbetter.com_1440x900.jpg);
+}
+
+.navbar-nav .sidebar{
+   width: 14rem!important;
+}
+
+.page-top{
+}
+
+.green{
+   color: #209e91;
+   font-size: 30px;
+}
+
+.red{
+   color: #f30a0a;
+   font-size: 16px;
+}
+
+.white{
+   color: white !important;
+   font-size: 30px;
+}
+
+
+.container{
+   max-width: 1200px !important;
+}
+
+.mt-4_5{
+   margin-top: 4.5px;
+}
+
+/* パラメタ領域を確認したい際は、以下のCSSをコメントアウトすること */
+.temporary{
+   display: none;
+}
+
+/* ip001A専用 */
+.disabled{
+   background-color: rgb(134, 133, 133);
+}
+
+.float-left_org{
+   display: inline-block;
+}
+
+.float-right{
+   float: right;
+}
+
+.display_none{
+   display: none;
+}
+
+.select_box{
+   width: 200px !important;
+   padding-left: 0 !important;
+   font-size: 14px;
+
+}
+
+.bgc{
+   background: rgba(0, 0, 0, 0.3);
+}
+
+.card_in{
+   background: rgba(83, 83, 83, 0.2);
+}
+
+.card-header{
+   /* background: rgba(47, 187, 110, 0.3);  */
+   background: rgba(45, 218, 189, 0.438); 
+}
+
+.card-header{
+   padding-top: 5px;
+   padding-bottom: 5px;
+}
+
+.form-control{
+   height: 30px;
+   border:  1px solid rgb(119, 153, 129) !important;
+}
+
+.origin_btn{
+   background-color: #209e91 !important;
+}
+
+.table_org{
+   background: rgba(83, 83, 83, 0.2);
+}
+
+.hedder_signout{
+   margin-top: 20px;
+   align-items: center;
+   display: flex;
+}
+
+.topbar{
+   height: 50px;
+}
+
+.select_org{
+   color: white !important;
+   background: rgba(240, 239, 239, 0.9) !important;
+}
+
+.align-items_right{
+   align-items: right;
+}
+
+.text-border{
+   border: 1px solid rgb(255, 255, 255) !important;
+}
+
+.img-profile{
+   height: 2.5rem !important;
+   width: 2.5rem !important;
+}
+
+.overflow_visible{
+   overflow: visible;
+   width: 6.5rem!important;
+}

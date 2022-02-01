@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Backyard</title>
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" style="background-image: url(img/blur-bg-blurred.jpg);" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="container ">
+        
+            <!-- Begin Page Content -->
+            <div class="container-fluid text-white">
+                <h1 class="h4 mb-3 mt-3">申請検索</h1>
+                    <div class="w-100"></div>
+                    <div class="form-group col-md-2">
+                        <label class="">申請者</label>
+                        <input type="text" class="form-control"  placeholder="" name="shinseisya" id="shinseisya">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="form-group col-md-2  float-left_org ">
+                        <label class="">申請日</label>
+                        <input type="text" onfocus="offSlash(this);" onblur="toSlash(this);" class="form-control"  placeholder="yyyymmdd" name="shinseibi_s" id="shinseibi_s">
+                    </div>
+                    <div class="float-left_org ">～</div>
+                    <div class="form-group col-md-2  float-left_org ">
+                        <label class="">　</label>
+                        <input type="text" onfocus="offSlash(this);" onblur="toSlash(this);" class="form-control"  placeholder="yyyymmdd" name="shinseibi_e" id="shinseibi_e">
+                    </div>
+                    <%# <div class="w-100"></div> %>
+                    <div class="form-group col-md-2  float-left_org">
+                        <label class="">費用発生日</label>
+                        <input type="text" onfocus="offSlash(this);" onblur="toSlash(this);" class="form-control"  placeholder="yyyymmdd" name="hiyoubi_s" id="hiyoubi_s">
+                    </div>
+                    <div class="float-left_org">～</div>
+                    <div class="form-group col-md-2 float-left_org">
+                        <label class="">　</label>
+                        <input type="text" onfocus="offSlash(this);" onblur="toSlash(this);" class="form-control"  placeholder="yyyymmdd" name="hiyoubi_e" id="hiyoubi_e">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="form-group col-md-10">
+                        <label class="">件名</label>
+                        <input type="text" class="form-control"  placeholder="" name="kenmei" id="kenmei">
+                    </div>
+                    <div class="form-group col-md-10">
+                        <label class="">詳細</label>
+                        <input type="text" class="form-control" placeholder="" name="syosai" id="syosai">
+                    </div>
+
+                    <div class="w-100"></div>
+                    <div class="form-group col-md-12 text-right">
+                      <input class="btn btn-info col-md-2 origin_btn" type="submit" value="検索" id="submit">
+                      <a href="#dataTable"></a>
+                    </div>
+            </div>
+            <!-- End of Main Content -->
+        
+            <!-- DataTales Example -->
+            <div class="container-fluid">
+                <div class="table-responsive">
+                    <%# <table class="table table-bordered text-white table-striped" id="dataTable" width="100%" cellspacing="0"> %>
+                    <table class="table text-white table-striped table-active table_org" id="dataTable" width="100%" cellspacing="0">
+                        <thead class="thead">
+                            <tr>
+                                <th>申請No</th>
+                                <th>申請日</th>
+                                <th>申請状況</th>
+                                <th>費用発生日</th>
+                                <th>申請者</th>
+                                <th>件名</th>
+                                <!-- <th>詳細</th> -->
+                                <th>予算コード</th>
+                                <th>税込額</th>
+                            </tr>
+                        </thead>
+                        <tbody class="">
+                            <tr class="clickable-row" id="table_org" data-href="#">
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- 中間データ領域-->
+                <form action="/ip001A_select" method="get">
+                    <div class="col-md-2 form-group temporary">
+                        <input type="text" class="form-control" id="shinseisya_id_input" placeholder="" name="shinsei_no" value="">
+                    </div>
+                    <div class="col-md-12 text-center temporary">
+                      <input id="shinseisya_id" class="btn btn-info origin_btn col-md-6" type="submit" value="申請">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
+    <script type="text/javascript">
+    <script src="js/src/ipCommon.js"></script>
+    <script src="js/src/ip002A.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Backyard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/modalwindow.css" rel="stylesheet">
+    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
+    <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/start/jquery-ui.css" rel="stylesheet">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+</head>
+<body >
+    <div id="container">
+        <div class="modal js-modal">
+        <div class="modal__bg js-modal-close"></div>
+        <div class="modal__content">
+            <p><%= @message%></p>
+            <form name="form4" action="/index">
+                <div class="text-right">
+                    <input id="shinsei" class="btn btn-info origin_btn col-md-2 float-right" type="submit" value="閉じる">
+                </div>
+            </form>
+            <div class="float-right">　</div>
+            <form name="form5" action="/ip002A">
+                <div class="text-right">
+                    <input id="shinsei" class="btn btn-info origin_btn col-md-2" type="submit" value="申請検索">
+                </div>
+            </form>
+            <%# <a class="js-modal-close" href="/index">閉じる</a> %>
+        </div><!--modal__inner-->
+    </div><!--modal-->
+    </div>
+     <!-- Bootstrap core JavaScript-->
+     <script src="vendor/jquery/jquery.min.js"></script>
+     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+     <!-- Core plugin JavaScript-->
+     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+     <!-- Custom scripts for all pages-->
+     <script src="js/sb-admin-2.min.js"></script>
+     <script src="js/src/temporary.js"></script>
+</body>
+</html>

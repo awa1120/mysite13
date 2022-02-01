@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Backyard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/modalwindow.css" rel="stylesheet">
+    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
+    <!-- <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/start/jquery-ui.css" rel="stylesheet"> -->
+    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script> -->
+
+</head>
+
+<body id="page-top">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" style="background-image: url(img/blur-bg-blurred.jpg);" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="container">
+            <!-- Begin Page Content -->
+            <div class="container-fluid text-white">
+                <h1 class="h4 mb-3 mt-3">費用申請</h1>
+                <div class="card mb-4 bgc">
+                    <div class="card-header bgc">
+                        <h3 id="shisei_no" class="h5 mb-2 mt-2 float-left">申請No：<%=@shinsei_no%></h3>
+                        <h3 id="shisei_zyokyo" class="h5 mb-2 mt-2 text-right">申請状況：<%=@shinsei_zhokyo%></h3>
+                    </div>
+                    <!-- Page Heading -->
+                    <div class="card_in">
+                        <form action="/ip001A_insert" method="post" enctype="multipart/form-data">
+
+                            <div class="col-md-2 form-group float-left_org mt-3">
+                                <label class="">申請者</label>
+                                <input type="text" class="form-control form-1" id="shinseisya" placeholder="" name="shinseisya"
+                                    value="<%=@employee_id%>">
+                            </div>
+                            <label class="mt-5">
+                                <%=@name%>
+                            </label>
+                            <div class="col-md-2 form-group">
+                                <label class="">申請日</label>
+                                <input type="text" onfocus="offSlash(this);" onblur="toSlash(this);" class="form-control col form-1" id="shinseibi" placeholder=""
+                                    name="shinseibi">
+                            </div>
+
+                            <div class="col-md-2 form-group">
+                                <label class="">費用発生日</label>
+                                <input type="text" onfocus="offSlash(this);" onblur="toSlash(this);" class="form-control form-1" id="hiyoubi" placeholder="" name="hiyoubi">
+                            </div>
+                            <div class="col-md-2 form-group">
+                                <label class="">費用区分</label>
+                                <div class="col-md-2 select_box">
+                                    <select class="form-control select_box form-1" id="hiyou_kubun" name="hiyou_kubun"
+                                        aria-label="Floating label select example">
+                                        <option ></option>
+                                        <option value="1" selected>物品</option>
+                                        <option value="2">謝礼金</option>
+                                        <option value="3">旅費</option>
+                                        <option value="4">書籍</option>
+                                        <option value="5">教育受講</option>
+                                        <option value="6">交際費</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label class="">件名（費用対象など）</label>
+                                <input type="text" class="form-control form-1" id="kenmei" placeholder="" name="kenmei"
+                                    value="<%=@message%>">
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                                <label class="">詳細</label>
+                                <input type="text" class="form-control form-1" id="syosai" placeholder="" name="syosai">
+                            </div>
+
+                            <div class="col-md-2 form-group">
+                                <label class="">予算コード</label>
+                                <input type="text" class="form-control form-1" id="yosan_code" placeholder="" name="yosan_code"
+                                    maxlength='5'>
+                            </div>
+                            <div class="col-md-2 form-group numeric-value float-left_org">
+                                <label class="">税込額</label>
+                                <input type="number" class="form-control form-1" id="zeikomi" placeholder="" name="zeikomi"
+                                    maxlength='10'>
+                            </div>
+                            <div class="col-md-2 form-group numeric-value float-left_org">
+                                <label class="">税抜額</label>
+                                <input type="number" class="form-control form-1" id="zeinuki" placeholder="" name="zeinuki"
+                                    maxlength='10'>
+                            </div>
+                            <div class="col-md-2 form-group numeric-value float-left_org">
+                                <label class="">税額</label>
+                                <input type="number" class="form-control form-1" id="zeigaku" placeholder="" name="zeigaku"
+                                    maxlength='10'>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label class="">備考</label>
+                                <input type="text" class="form-control form-1" id="bikou" placeholder="" name="bikou">
+                            </div>
+                            <div class="w-100"></div>
+                            <div id="img_view" class="col-md-6 form-group">
+                                <label class="">添付ファイル：</label>
+                                <img  src="" alt="">
+                                <a id="img" href= "" target="_blank"></a>
+                            </div>
+                            <div id="img_form" class="col-md-6 form-group">
+                                <label for="inputFile">添付ファイル</label>
+                                <div class="custom-file">
+                                    <label for="img">画像: </label>
+                                    <input name="img" type="file" class="custom-file-input" id="inputFile">
+                                    <label class="custom-file-label" for="inputFile">Choose file</label>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                </div>
+                <div class="w-100"></div>
+                <div class="col-md-12 text-center">
+                    <input id="shinsei" class="btn btn-info origin_btn col-md-6" type="submit" value="申請">
+                </div>
+                <!-- Page Heading -->
+                    <div class="mb-4">       
+                    </div>
+                </form>
+            </div>
+            <%# 照会モード %>
+            <%# 承認欄エリア %>
+            <div class="container-fluid text-white syonin_area">
+                <form action="/ip001A_syonin" method="post">
+                <div class="card mb-4 bgc">
+                    <div class="card-header bgc">
+                        <h3 id="shisei_zyokyo" class="h5 mb-2 mt-2">承認欄</h3>
+                    </div>
+                    <div class="card_in">
+                        <div class="col-md-2 form-group float-left_org mt-3">
+                            <label class="">承認者</label>
+                            <input type="text" class="form-control" id="syoninsya" placeholder="" name="syoninsya"
+                                value="<%=@employee_id%>">
+                        </div>
+                        <label class="mt-5">
+                            <%=@name%>
+                        </label>
+                        <div class="col-md-2 form-group">
+                            <label class="">承認日</label>
+                            <input type="text" onfocus="offSlash(this);" onblur="toSlash(this);" class="form-control col" id="syoninbi" placeholder=""
+                                name="syoninbi">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label class="">承認コメント</label>
+                            <input type="text" class="form-control" id="syonin_comment" placeholder="" name="syonin_comment">
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="">
+                    <div class="col-md-12">
+                        <input id="shinsei_torimodoshi" class="btn btn-success origin_btn col-md-4 float-left"
+                            type="submit" value="申請取戻">
+                        <div class="col-md-2 float-left"></div>
+                            <input class="temporary" type="text" id="shinsei_no" placeholder="" name="shinsei_no" maxlength='10' value="<%=@shinsei_no%>">
+                            <input id="syonin" class="btn btn-info origin_btn col-md-4 float-right" type="submit" value="承認">
+                        </form>
+                    </div>
+                    <div>
+                        <!-- パラメタ領域-->
+                        <div class="temporary">
+                            <input type="text" id="gamen_param" placeholder="" name="gamen_param" maxlength='10' value="<%=@gamen_param%>">
+                            <input type="text" id="authority" placeholder="" name="authority" maxlength='10' value="<%=@authority_param%>">
+                        </div>
+                    </div>
+                </div>
+                <!-- Bootstrap core JavaScript-->
+                <script src="vendor/jquery/jquery.min.js"></script>
+                <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+                <!-- Core plugin JavaScript-->
+                <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+                <!-- Custom scripts for all pages-->
+                <script src="js/sb-admin-2.min.js"></script>
+                <script src="js/src/ip001A.js"></script>
+                
+
+</body>
+
+</html>
